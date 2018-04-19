@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NewDemo</string>
+    <string name="text1">NewDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="next">next !</string>
+    <string name="prev">prev !</string>
+    <string name="title_activity_banner">BannerActivity</string>
+</resources>

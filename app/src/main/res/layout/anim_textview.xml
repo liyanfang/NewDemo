@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" >
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/next" />
+
+        <Button
+            android:id="@+id/prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/prev" />
+    </RelativeLayout>
+
+    <cn.suanzi.newdemo.View.AutoTextView
+        android:id="@+id/switcher02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_dark" />
+
+    <cn.suanzi.newdemo.View.HorizonScrollTextView
+        android:id="@+id/tv_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_blue_light"
+        android:gravity="center_vertical" />
+
+    <cn.suanzi.newdemo.View.HorizonScrollTextView2
+        android:id="@+id/tv_3"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_orange_light"
+        android:gravity="center_vertical"
+        android:inputType="text"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp" />
+    
+     <TextView
+        android:id="@+id/testEllipsize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="就覅偶文静说地方就开了撒娇时间的空间空间进口阀"
+        android:layout_marginTop="20dp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:textColor="#ff000000"
+        android:textSize="20sp" 
+        />
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.suanzi.newdemo">
+
+    <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:name=".DemoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.Transition3dActivity" />
+        <activity android:name=".activity.SeftAniActivity" />
+        <activity android:name=".activity.CacheActivity" />
+        <activity android:name=".activity.AnimationActivity" />
+        <activity android:name=".activity.TableyoutActivity" />
+        <activity android:name=".activity.ObjectAnimatorActivity" />
+        <activity
+            android:name=".activity.FullAnimationActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".activity.DrawViewActivity" />
+        <activity android:name=".activity.TestHandlerActivity" />
+        <activity android:name=".activity.TranslateAnimationActivity" />
+        <activity android:name=".activity.GradViewActivity" />
+        <activity android:name=".activity.CoordinatorLayoutActivity" />
+        <activity android:name=".activity.CanvasDemoActivity" />
+        <activity
+            android:name=".activity.ListScrollActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".activity.DrawView2Activity" />
+        <activity android:name=".activity.AnimTextActivity" />
+        <activity android:name=".activity.BarrageActivity" />
+        <activity android:name=".activity.RecyclerViewActivity" />
+        <activity android:name=".activity.RecyclerScrollActivity" />
+        <activity android:name=".activity.WebViewAcitvity" />
+        <activity android:name=".activity.AdImageViewActivity" />
+        <activity android:name=".activity.ImageBlurryActivity" />
+        <activity android:name=".activity.Banner2Activity" />
+        <activity android:name=".activity.ViewFlipperActivity" />
+        <activity android:name=".activity.DrawingViewActivity" />
+        <activity
+            android:name=".activity.BannerActivity"
+            android:label="@string/title_activity_banner"
+            android:theme="@style/AppTheme"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tc="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/btn_begin_anim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="beginAnim"
+        android:text="开始动画"/>
+
+    <cn.suanzi.newdemo.View.MyProgressView
+        android:id="@+id/flow_prgress_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tc:circleColor="@color/circle_color"
+        tc:radius="44dp"
+        tc:ringColor="@color/ring_color"
+        tc:strokeWidth="6dp"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

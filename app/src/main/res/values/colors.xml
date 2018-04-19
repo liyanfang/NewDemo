@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="toast">#a7eab7</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="gray">#c6c5c5</color>
+    <color name="ball_gray">#b4b3b3</color>
+    <color name="bg">#ededea</color>
+    <color name="white">#ffffff</color>
+    <color name="green">#65dc25</color>
+    <color name="red">#ea2406</color>
+    <color name="ticket_color">#ea2406</color>
+    <color name="default_ring_color">#f2edac</color>
+    <color name="ring_color">#b1a607</color>
+    <color name="circle_color">#ded8df</color>
+
+
+    <color name="activity_bg_color">#fffafafa</color>
+    <color name="top_category_bar_background">#ffeeeeee</color>
+    <color name="divider">#ffdddddd</color>
+
+    <color name="category_tab_text">#ff707070</color>
+    <color name="category_tab_text_dark">#fffafafa</color>
+    <color name="category_tab_highlight_text">#fafafa</color>
+    <color name="category_tab_highlight_text_dark">#ffd43d3d</color>
+    <color name="category_tab_highlight_bg">#F8FAFC</color>
+    <color name="category_tab_highlight_dark_bg">#fffafafa</color>
+    <color name="text_home_item_cut">#efefef</color>
+    <color name="transparent">#00000000</color>
+</resources>

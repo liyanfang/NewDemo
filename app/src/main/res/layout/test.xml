@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_alignLeft="@+id/name"
+            android:id="@+id/up_indicator"
+            android:background="#FFDFDFDF"
+            android:layout_width="fill_parent"
+            android:visibility="visible"
+            android:layout_height="1px" />
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@mipmap/a"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_toRightOf="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="15sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/detail_right_layout"
+            android:text="aaaa"
+            android:singleLine="true"
+            android:ellipsize="end"/>
+
+        <RelativeLayout
+            android:id="@+id/detail_right_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp">
+
+            <TextView
+                android:id="@+id/detail"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:textSize="15sp"
+                android:textColor="#333333"
+                android:text="wwww"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/detail_oval"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:background="@mipmap/a"
+                android:textColor="#FFFFFF"
+                android:text="77777"
+                android:layout_height="21dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_red_point"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/b"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>
