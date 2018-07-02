@@ -12,6 +12,7 @@
     <color name="red">#ea2406</color>
     <color name="ticket_color">#ea2406</color>
     <color name="default_ring_color">#f2edac</color>
+    <color name="default_bg">#ffffff</color>
     <color name="ring_color">#b1a607</color>
     <color name="circle_color">#ded8df</color>
 

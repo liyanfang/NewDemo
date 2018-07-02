@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/id_recyclerview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+    <cn.suanzi.newdemo.View.CircleIndicatorView
+        android:id="@+id/circleIndicatorView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:cirColor="#ef061d"
+        app:rgColor="#22b7e9"
+        app:txtColor="@color/white"
+        app:txtSize="15sp"
+        app:txt="暂时测试"
+        app:ringWidth="25dp"/>
+</LinearLayout>

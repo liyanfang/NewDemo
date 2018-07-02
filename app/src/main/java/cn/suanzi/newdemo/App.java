@@ -6,7 +6,7 @@ import android.content.Context;
 /**
  * Created by liyanfang on 2017/11/30.
  */
-public class DemoApplication extends Application{
+public class App extends Application{
 
     private static Context mContext;
 

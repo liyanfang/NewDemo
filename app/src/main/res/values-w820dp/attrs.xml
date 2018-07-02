@@ -24,4 +24,46 @@
         <attr name="circleColor" format="color" />
         <attr name="ringColor" format="color" />
     </declare-styleable>
+    <!-- 自定义圆环-->
+    <declare-styleable name="CircleIndicatorView">
+        <attr name="cirColor" format="color"/>
+        <attr name="rgColor" format="color"/>
+        <attr name="ringWidth" format="dimension"/>
+        <attr name="txtColor" format="color"/>
+        <attr name="txtSize" format="dimension"/>
+        <attr name="txt" format="string"/>
+    </declare-styleable>
+
+    <!-- banner轮播图-->
+    <declare-styleable name="yxBanner">
+        <attr name="sel_indicator_color" format="color"/>
+        <attr name="un_sel_indicator_color" format="color"/>
+        <attr name="sel_indicator_width" format="dimension"/>
+        <attr name="un_sel_indicator_height" format="dimension"/>
+        <attr name="banner_default_image" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="SwipeMenu">
+        <!--动画的代码-->
+        <attr name="sm_type" format="integer"/>
+        <!--滑出菜单的范围-->
+        <attr name="sm_dragoffset" format="dimension"/>
+        <!--滑出菜单距边界的值-->
+        <attr name="sm_menuoffset" format="dimension"/>
+        <!--滑动开始的缩放值-->
+        <attr name="sm_startscale" format="float"/>
+        <!--滑动开始的alpha值-->
+        <attr name="sm_startalpha" format="float"/>
+        <!--滑动开始的3D旋转角度-->
+        <attr name="sm_start3dangle" format="integer"/>
+        <!--全局颜色-->
+        <attr name="sm_fullcolor" format="color"/>
+        <!--全局背景-->
+        <attr name="sm_fullimage" format="reference"/>
+        <!--以下方法只在设置全局图片背景时候有用-->
+        <!--标题栏颜色-->
+        <attr name="sm_statucolor" format="color"/>
+        <!--全局背景的模糊度-->
+        <attr name="sm_fullimageblur" format="float"/>
+    </declare-styleable>
 </resources>
