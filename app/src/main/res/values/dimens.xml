@@ -5,4 +5,9 @@
     <dimen name="app_cut_big">10dp</dimen>
     <dimen name="home_title_ends">10dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="ttg_dp_12">12dp</dimen>
+    <dimen name="ttg_dp_6">6dp</dimen>
+    <dimen name="ttg_dp_10">10dp</dimen>
+    <dimen name="header_height">300dp</dimen>
+    <dimen name="min_height">50dp</dimen>
 </resources>

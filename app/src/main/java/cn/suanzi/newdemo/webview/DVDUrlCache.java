@@ -17,7 +17,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
-import cn.suanzi.newdemo.DemoApplication;
+import cn.suanzi.newdemo.App;
 import cn.suanzi.newdemo.Util.Util;
 
 /**
@@ -61,7 +61,7 @@ public class DVDUrlCache {
     public DVDUrlCache() {
          //本地缓存路径，请在调试中自行修改
         // this.rootDir = DiskUtil.getDiskCacheDir(DVDApplicationContext.getInstance().getApplicationContext());
-        this.rootDir = Util.getExternalCacheDir(DemoApplication.getContext(), "webview");
+        this.rootDir = Util.getExternalCacheDir(App.getContext(), "webview");
     }
 
     public void register(String url, String cacheFileName,

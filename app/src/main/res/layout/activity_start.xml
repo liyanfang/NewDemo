@@ -4,6 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorPrimary"
+            android:text="项目入口"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/lv_list"
             android:layout_width="match_parent"

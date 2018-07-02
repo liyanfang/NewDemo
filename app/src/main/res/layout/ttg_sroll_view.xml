@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+    <FrameLayout
+        android:id="@+id/ttg_fy_view_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible" >
+        <ImageView
+            android:id="@+id/iv_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:layout_gravity="center" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdge="none"/>
+        <LinearLayout
+            android:id="@+id/ttg_ly_scroll_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="@dimen/ttg_dp_12"
+            android:layout_marginRight="@dimen/ttg_dp_10"
+            android:layout_marginLeft="@dimen/ttg_dp_10"
+            android:orientation="horizontal">
+        </LinearLayout>
+    </FrameLayout>
+</merge>

@@ -2,8 +2,10 @@ package cn.suanzi.newdemo.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +13,7 @@ import java.util.List;
 
 import cn.suanzi.newdemo.R;
 import cn.suanzi.newdemo.Util.Callback;
+import cn.suanzi.newdemo.View.MySwipeRefreshLayout;
 import cn.suanzi.newdemo.View.ScrollInterceptScrollView;
 import cn.suanzi.newdemo.View.TtgPagerSlidingTab;
 import cn.suanzi.newdemo.View.WrapContentHeightViewPager;
@@ -23,25 +26,24 @@ import cn.suanzi.newdemo.pojo.Cates;
 public class RecyclerScrollActivity extends FragmentActivity {
 
     private List<Cates> mDatas;
-
     /** 选项卡*/
     private TtgPagerSlidingTab mTabView;
     /** 类目适配器*/
     private ChannelCateAdapter mChannelCateAdapter;
     /** viewpager*/
-    private WrapContentHeightViewPager mViewPager;
+    private ViewPager mViewPager;
     /** 下拉*/
-    private SwipeRefreshLayout mSfSwipeRefreshLayout;
+    private MySwipeRefreshLayout mSfSwipeRefreshLayout;
     /** 最外层的滑动布局*/
-    private ScrollInterceptScrollView mSvView;
+//    private ScrollInterceptScrollView mSvView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_recycle_scroll);
         mTabView = (TtgPagerSlidingTab) findViewById(R.id.ttg_pager_sliding_tab);
-        mViewPager = (WrapContentHeightViewPager) findViewById(R.id.ttg_viewPage_fragment);
-        mSfSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.sf_swiperefreshlayout);
-        mSvView = (ScrollInterceptScrollView) findViewById(R.id.ttg_sv_view);
+        mViewPager = (ViewPager) findViewById(R.id.ttg_viewPage_fragment);
+        mSfSwipeRefreshLayout = (MySwipeRefreshLayout) findViewById(R.id.sf_swiperefreshlayout);
+//        mSvView = (ScrollInterceptScrollView) findViewById(R.id.ttg_sv_view);
         mTabView.setOnPageSelectedLister(callback);
         initDatas();
         init();
@@ -99,22 +101,33 @@ public class RecyclerScrollActivity extends FragmentActivity {
     }
 
     private boolean isLoadFlag = true;
+//
+
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getX() > 0 && isLoadFlag)  {
+            isLoadFlag = false;
+            mChannelCateAdapter.mFragment.onAutoLoadMore();
+        }
+        return super.onTouchEvent(event);
+    }
 
     public void init () {
-        mSvView.setScanScrollChangedListener(new ScrollInterceptScrollView.ISmartScrollChangedListener() {
-            @Override
-            public void onScrolledToBottom() {
-                if (mChannelCateAdapter != null && mChannelCateAdapter.mFragment != null && isLoadFlag) {
-                    isLoadFlag = false;
-                    mChannelCateAdapter.mFragment.onAutoLoadMore();
-                }
-            }
-
-            @Override
-            public void onScrolledToTop() {
-
-            }
-        });
+//        mSvView.setScanScrollChangedListener(new ScrollInterceptScrollView.ISmartScrollChangedListener() {
+//            @Override
+//            public void onScrolledToBottom() {
+//                if (mChannelCateAdapter != null && mChannelCateAdapter.mFragment != null && isLoadFlag) {
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onScrolledToTop() {
+//
+//            }
+//        });
     }
 
     private void setTabView () {

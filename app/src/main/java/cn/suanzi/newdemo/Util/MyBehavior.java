@@ -107,7 +107,6 @@ public class MyBehavior extends CoordinatorLayout.Behavior {
 
         }
         if (pro >= min && pro <= 1) {
-
             child1.setAlpha(pro);
             if (pro < 0.7) {
                 child1.setVisibility(View.GONE);

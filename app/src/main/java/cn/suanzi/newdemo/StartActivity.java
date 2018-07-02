@@ -1,64 +1,89 @@
 package cn.suanzi.newdemo;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.alibaba.fastjson.JSON;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import cn.suanzi.newdemo.Util.DataUtils;
 import cn.suanzi.newdemo.Util.StatusBarCompat;
 import cn.suanzi.newdemo.activity.AdImageViewActivity;
 import cn.suanzi.newdemo.activity.AnimTextActivity;
 import cn.suanzi.newdemo.activity.AnimationActivity;
 import cn.suanzi.newdemo.activity.Banner2Activity;
 import cn.suanzi.newdemo.activity.BannerActivity;
+import cn.suanzi.newdemo.activity.BannerViewActivity;
 import cn.suanzi.newdemo.activity.BarrageActivity;
 import cn.suanzi.newdemo.activity.CacheActivity;
+import cn.suanzi.newdemo.activity.CircleIndicatorViewActivity;
 import cn.suanzi.newdemo.activity.CoordinatorLayoutActivity;
 import cn.suanzi.newdemo.activity.DrawViewActivity;
 import cn.suanzi.newdemo.activity.DrawingViewActivity;
 import cn.suanzi.newdemo.activity.FullAnimationActivity;
 import cn.suanzi.newdemo.activity.ImageBlurryActivity;
+import cn.suanzi.newdemo.activity.LoadingActivity;
 import cn.suanzi.newdemo.activity.MainActivity;
+import cn.suanzi.newdemo.activity.QQCeHuaActivity;
 import cn.suanzi.newdemo.activity.RecyclerScrollActivity;
 import cn.suanzi.newdemo.activity.RecyclerViewActivity;
+import cn.suanzi.newdemo.activity.ScrollConflictActivity;
 import cn.suanzi.newdemo.activity.SeftAniActivity;
 import cn.suanzi.newdemo.activity.TableyoutActivity;
+import cn.suanzi.newdemo.activity.ThreadPoolExecutorActivity;
 import cn.suanzi.newdemo.activity.Transition3dActivity;
+import cn.suanzi.newdemo.activity.VideoActivity;
 import cn.suanzi.newdemo.activity.ViewFlipperActivity;
 import cn.suanzi.newdemo.activity.WebViewAcitvity;
 import cn.suanzi.newdemo.adapter.HomeAdapter;
 import cn.suanzi.newdemo.pojo.Home;
+import cn.suanzi.newdemo.pojo.video.VideoItem;
 
-public class StartActivity extends AppCompatActivity{
+public class StartActivity extends FragmentActivity{
     private static final String TAG = StartActivity.class.getSimpleName();
     Toast toast = null;
     private View mView;
     private TextView mToastView;
-    private RecyclerView mRecyclerView;
-    private HomeAdapter mHomeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        mRecyclerView = (RecyclerView) findViewById(R.id.lv_list);
+        RecyclerView mRecyclerView = findViewById(R.id.lv_list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
-        mHomeAdapter = new HomeAdapter(this, getListData());
+        HomeAdapter mHomeAdapter = new HomeAdapter(this, getListData());
         mRecyclerView.setAdapter(mHomeAdapter);
         StatusBarCompat.setStatusBarColor(this, Color.parseColor("#7349ef"), 112);
+        Log.d(TAG, "----------------- 测试 ----------------");
+        float sp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 15, getResources().getDisplayMetrics());
+
+//        Math.atan();
+
+//        ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
+//        engine.eval("");
+
     }
 
     private List<Home> getListData () {
@@ -83,10 +108,8 @@ public class StartActivity extends AppCompatActivity{
         homes.add(home10);
         Home<DrawViewActivity> home11 = new Home<>("画图", 11, DrawViewActivity.class);
         homes.add(home11);
-        Home<CoordinatorLayoutActivity> home12 = new Home<>("模仿支付宝滑动", 12, CoordinatorLayoutActivity.class);
+        Home<CoordinatorLayoutActivity> home12 = new Home<>("模仿支付宝滑动demo", 12, CoordinatorLayoutActivity.class);
         homes.add(home12);
-        Home<CoordinatorLayoutActivity> home13 = new Home<>("放支付宝滑动", 13, CoordinatorLayoutActivity.class);
-        homes.add(home13);
         Home<RecyclerViewActivity> home14 = new Home<>("RecyclerView示例", 14, RecyclerViewActivity.class);
         homes.add(home14);
         Home<RecyclerScrollActivity> recyclerScrollActivity = new Home<>("scrollView/recycleview", 15, RecyclerScrollActivity.class);
@@ -103,8 +126,22 @@ public class StartActivity extends AppCompatActivity{
         homes.add(0, Banner2Activity);
         Home<ViewFlipperActivity> ViewFlipperActivity = new Home<>("垂直循环滚动", 18, ViewFlipperActivity.class);
         homes.add(0, ViewFlipperActivity);
-        Home<DrawingViewActivity> DrawingViewActivity = new Home<>("画自动转动的圆环", 18, DrawingViewActivity.class);
+        Home<DrawingViewActivity> DrawingViewActivity = new Home<>("画的圆环", 18, DrawingViewActivity.class);
         homes.add(0, DrawingViewActivity);
+        Home<CircleIndicatorViewActivity> CircleIndicatorViewActivity = new Home<>("画图", 18, CircleIndicatorViewActivity.class);
+        homes.add(0, CircleIndicatorViewActivity);
+        Home<LoadingActivity> LoadingActivity = new Home<>("loading", 18, LoadingActivity.class);
+        homes.add(0, LoadingActivity);
+        Home<BannerViewActivity> BannerViewActivity = new Home<>("Banner 轮播图", 18, BannerViewActivity.class);
+        homes.add(0, BannerViewActivity);
+        Home<ThreadPoolExecutorActivity> ThreadPoolExecutorActivity = new Home<>("线程池", 18, ThreadPoolExecutorActivity.class);
+        homes.add(0, ThreadPoolExecutorActivity);
+        Home<ScrollConflictActivity> ScrollConflictActivity = new Home<>("纵向滑动冲突", 18, ScrollConflictActivity.class);
+        homes.add(0, ScrollConflictActivity);
+        Home<QQCeHuaActivity> QQCeHuaActivity = new Home<>("QQ侧滑", 18, QQCeHuaActivity.class);
+        homes.add(0, QQCeHuaActivity);
+        Home<VideoActivity> VideoActivity = new Home<>("视频", 18, VideoActivity.class);
+        homes.add(0, VideoActivity);
         return homes;
     }
 
@@ -114,7 +151,7 @@ public class StartActivity extends AppCompatActivity{
         }
         if (mView == null) {
             mView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_toast, null);
-            mToastView = (TextView) mView.findViewById(R.id.tv_toast);
+            mToastView = mView.findViewById(R.id.tv_toast);
         }
         GradientDrawable p = (GradientDrawable) mView.getBackground();
         p.setColor(Color.parseColor("#7f000000"));

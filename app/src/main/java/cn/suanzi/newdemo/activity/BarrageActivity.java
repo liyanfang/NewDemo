@@ -42,7 +42,7 @@ public class BarrageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_barrage);
         VideoView videoView = (VideoView) findViewById(R.id.video_view);
-        videoView.setVideoPath(Environment.getExternalStorageDirectory() + "/aa.mp4");
+        videoView.setVideoPath(Environment.getExternalStorageDirectory() + "/act_video.mp4");
         videoView.start();
 
         danmakuView = (DanmakuView) findViewById(R.id.danmaku_view);

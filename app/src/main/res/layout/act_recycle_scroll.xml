@@ -5,14 +5,14 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <android.support.v4.widget.SwipeRefreshLayout
+    <cn.suanzi.newdemo.View.MySwipeRefreshLayout
         android:id="@+id/sf_swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <cn.suanzi.newdemo.View.ScrollInterceptScrollView
-        android:id="@+id/ttg_sv_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <!--<cn.suanzi.newdemo.View.ScrollInterceptScrollView-->
+        <!--android:id="@+id/ttg_sv_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -44,11 +44,11 @@
                 app:ttgZmsSelectedTabTextSize="14sp"
                 app:ttgZmsTabTextSize="14sp"/>
             <TextView style="@style/TtgVLine"/>
-            <cn.suanzi.newdemo.View.WrapContentHeightViewPager
+            <android.support.v4.view.ViewPager
                 android:id="@+id/ttg_viewPage_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </LinearLayout>
-    </cn.suanzi.newdemo.View.ScrollInterceptScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    <!--</cn.suanzi.newdemo.View.ScrollInterceptScrollView>-->
+    </cn.suanzi.newdemo.View.MySwipeRefreshLayout>
 </LinearLayout>

@@ -2,8 +2,10 @@ package cn.suanzi.newdemo.Util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.os.Environment;
+import android.util.DisplayMetrics;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -94,5 +96,29 @@ public class Util {
             file = context.getApplicationContext().getCacheDir();
         }
         return file;
+    }
+
+    /**
+     * 获取屏幕的高
+     * @param context
+     * @return
+     */
+    public static int getWindowWidth (Context context) {
+        Resources resources = context.getResources();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+        float density = dm.density;
+        return dm.widthPixels;
+    }
+
+    /**
+     * 获取屏幕的高
+     * @param context
+     * @return
+     */
+    public static int getWindowheight (Context context) {
+        Resources resources = context.getResources();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+        float density = dm.density;
+        return dm.heightPixels;
     }
 }
