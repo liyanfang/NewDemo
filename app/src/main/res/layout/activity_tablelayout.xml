@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:visibility="gone"
         app:tabTextColor="#666"/>
-    <cn.suanzi.newdemo.View.CategoryTabStrip
+    <cn.suanzi.newdemo.view.CategoryTabStrip
         android:id="@+id/category_strip"
         android:layout_width="match_parent"
         android:background="@color/category_tab_highlight_bg"
@@ -27,7 +27,7 @@
         android:paddingLeft="6.0dip"
         android:layout_alignParentTop="true"
         android:paddingRight="6.0dip" />
-    <cn.suanzi.newdemo.View.CustomViewPager
+    <cn.suanzi.newdemo.view.CustomViewPager
         android:id="@+id/viewPage"
         android:layout_below="@+id/category_strip"
         android:layout_width="match_parent"

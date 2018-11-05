@@ -16,11 +16,16 @@
         android:textSize="17sp"
         android:text="loading测试"
         android:layout_marginTop="@dimen/ttg_dp_10"/>
+    
+    <cn.suanzi.newdemo.view.TeamProgressView1
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="@dimen/ttg_dp_10"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_loading"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"

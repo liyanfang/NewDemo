@@ -11,7 +11,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.View.Rotate3dAnimation;
+import cn.suanzi.newdemo.view.Rotate3dAnimation;
 
 public class SeftAniActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
     private static final String TAG = SeftAniActivity.class.getSimpleName();

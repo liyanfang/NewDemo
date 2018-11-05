@@ -17,7 +17,7 @@
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:orientation="vertical">
-            <cn.suanzi.newdemo.View.YxBanner
+            <cn.suanzi.newdemo.view.YxBanner
                 android:id="@+id/yxbanner"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"

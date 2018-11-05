@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.View.AdImageViewVersion1;
+import cn.suanzi.newdemo.view.AdImageViewVersion1;
 
 public class AdImageViewActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = AdImageViewActivity.class.getSimpleName();

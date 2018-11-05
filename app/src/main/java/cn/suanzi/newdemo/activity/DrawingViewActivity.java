@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.View.MyProgressView;
+import cn.suanzi.newdemo.view.MyProgressView;
 
 /**
  * 画自动转动的圆环

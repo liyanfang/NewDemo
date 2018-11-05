@@ -11,7 +11,7 @@
         android:onClick="beginAnim"
         android:text="开始动画"/>
 
-    <cn.suanzi.newdemo.View.MyProgressView
+    <cn.suanzi.newdemo.view.MyProgressView
         android:id="@+id/flow_prgress_view"
         android:layout_width="100dp"
         android:layout_height="100dp"

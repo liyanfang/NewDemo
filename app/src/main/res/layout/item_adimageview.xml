@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="#fff"
     android:gravity="center">
-    <cn.suanzi.newdemo.View.AdImageViewVersion1
+    <cn.suanzi.newdemo.view.AdImageViewVersion1
         android:id="@+id/id_iv_ad"
         android:layout_width="match_parent"
         android:layout_height="180dp"

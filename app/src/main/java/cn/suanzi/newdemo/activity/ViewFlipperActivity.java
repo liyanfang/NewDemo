@@ -3,21 +3,15 @@ package cn.suanzi.newdemo.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import com.zhy.adapter.recyclerview.CommonAdapter;
-import com.zhy.adapter.recyclerview.base.ViewHolder;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.View.AdImageViewVersion1;
 
 /**
  * 垂直循环滚动的效果

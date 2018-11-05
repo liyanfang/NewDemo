@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.View.CircleIndicatorView;
+import cn.suanzi.newdemo.view.CircleIndicatorView;
 
 public class CircleIndicatorViewActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = CircleIndicatorViewActivity.class.getSimpleName();

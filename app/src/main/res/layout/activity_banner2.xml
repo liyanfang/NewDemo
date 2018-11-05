@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="cn.suanzi.newdemo.activity.BannerActivity">
+    tools:context="cn.suanzi.newdemo.activity.banner.BannerActivity">
 
     <com.youth.banner.Banner
         xmlns:app="http://schemas.android.com/apk/res-auto"

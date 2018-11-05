@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cn.suanzi.newdemo.View.libary.view.SwipeMenu xmlns:android="http://schemas.android.com/apk/res/android"
+<cn.suanzi.newdemo.view.libary.view.SwipeMenu xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,4 +8,4 @@
     app:sm_menuoffset="89dp">
     <include layout="@layout/left_layout"/>
     <include layout="@layout/right_layout"/>
-</cn.suanzi.newdemo.View.libary.view.SwipeMenu>
+</cn.suanzi.newdemo.view.libary.view.SwipeMenu>

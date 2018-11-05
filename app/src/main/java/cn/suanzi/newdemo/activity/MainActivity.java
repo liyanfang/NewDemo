@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.View.Rotate3dAnimation;
+import cn.suanzi.newdemo.view.Rotate3dAnimation;
 
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
     private static final String TAG = MainActivity.class.getSimpleName();

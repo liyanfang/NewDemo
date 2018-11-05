@@ -24,7 +24,7 @@ import java.util.Random;
 
 import cn.suanzi.newdemo.R;
 import cn.suanzi.newdemo.Util.Callback;
-import cn.suanzi.newdemo.View.ScrollGridLayoutManager;
+import cn.suanzi.newdemo.view.ScrollGridLayoutManager;
 import cn.suanzi.newdemo.adapter.MainRvAdapter;
 import cn.suanzi.newdemo.adapter.base.BaseQuickAdapter;
 import cn.suanzi.newdemo.api.ApiService;

@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.View.SildingFinishLayout;
+import cn.suanzi.newdemo.view.SildingFinishLayout;
 
 public class FullAnimationActivity extends Activity implements View.OnClickListener {
     private static final String TAG = FullAnimationActivity.class.getSimpleName();

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="10dp" />
+            <!-- angle表示方向角度 当angle=0时，渐变色是从左向右。 然后逆时针方向转，当angle=90时为从下往上-->
+            <gradient
+                android:angle="0"
+                android:centerColor="#E5E5E5"
+                android:centerY="0.75"
+                android:endColor="#E5E5E5"
+                android:startColor="#E5E5E5" />
+        </shape>
+    </item>
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="10dp" />
+                <gradient
+                    android:angle="0"
+                    android:centerY="0.3"
+                    android:centerColor="#FF9B02"
+                    android:endColor="#FF9B02"
+                    android:startColor="#FF0D0D" />
+            </shape>
+        </clip>
+    </item>
+    <item android:id="@android:id/progress">
+        <scale android:scaleWidth="100%">
+            <shape>
+                <corners android:radius="10dp" />
+                <solid android:color="#E5E5E5"/>
+                <stroke android:color="#E5E5E5"/>
+                <gradient
+                    android:angle="0"
+                    android:centerY="0.5"
+                    android:type="linear"
+                    android:endColor="#FF9B02"
+                    android:centerColor="#FF4c09"
+                    android:startColor="#FF110D" />
+            </shape>
+        </scale>
+    </item>
+
+</layer-list>

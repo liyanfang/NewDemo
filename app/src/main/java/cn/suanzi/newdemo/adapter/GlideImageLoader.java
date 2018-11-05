@@ -1,15 +1,11 @@
 package cn.suanzi.newdemo.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.youth.banner.loader.ImageLoader;
 
-import cn.suanzi.newdemo.activity.BannerActivity;
 import cn.suanzi.newdemo.pojo.BannerPojo;
 
 /**

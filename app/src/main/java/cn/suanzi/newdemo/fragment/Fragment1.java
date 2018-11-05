@@ -14,14 +14,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.youth.banner.Banner;
-import com.youth.banner.listener.OnBannerClickListener;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.activity.BannerActivity;
+import cn.suanzi.newdemo.activity.banner.BannerActivity;
 import cn.suanzi.newdemo.adapter.GlideImageLoader;
 import cn.suanzi.newdemo.pojo.BannerPojo;
 

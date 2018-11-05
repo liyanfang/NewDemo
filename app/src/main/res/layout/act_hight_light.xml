@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e9e394"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/btn_test1"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:text="测试1"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="40dp"
+        android:text="测试2"/>
+
+    <Button
+        android:id="@+id/btn_test2"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="70dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/shape_tb_login1"
+        android:onClick="onShowDialog"
+        android:text="测试3"/>
+
+    <ImageView
+        android:id="@+id/iv_add"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@mipmap/add"/>
+
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:gravity="bottom">
+       <TextView
+           android:id="@+id/btn_test3"
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:layout_marginTop="70dp"
+           android:gravity="center"
+           android:layout_marginRight="50dp"
+           android:layout_gravity="bottom|center"
+           android:text="测试4"/>
+       <TextView
+           android:id="@+id/btn_test5"
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:layout_marginTop="70dp"
+           android:layout_marginLeft="50dp"
+           android:gravity="center"
+           android:layout_gravity="bottom|center"
+           android:text="测试5"/>
+   </FrameLayout>
+</LinearLayout>

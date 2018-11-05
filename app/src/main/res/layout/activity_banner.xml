@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="cn.suanzi.newdemo.activity.BannerActivity">
+    tools:context="cn.suanzi.newdemo.activity.banner.BannerActivity">
 
     <TextView
         android:id="@+id/tv_view"
@@ -15,7 +15,7 @@
         android:text="动画"
         android:gravity="center"
         android:background="#d2d27a"/>
-    <cn.suanzi.newdemo.View.MyTextView
+    <cn.suanzi.newdemo.view.MyTextView
         android:id="@+id/tv_test2"
         android:layout_width="100dp"
         android:layout_height="48dp"

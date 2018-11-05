@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cn.suanzi.newdemo.View.SildingFinishLayout
+<cn.suanzi.newdemo.view.SildingFinishLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ly_text"
     android:layout_width="match_parent"
@@ -33,4 +33,4 @@
                             android:text="请输入内容"/>
                 </FrameLayout>
         </LinearLayout>
-</cn.suanzi.newdemo.View.SildingFinishLayout>
+</cn.suanzi.newdemo.view.SildingFinishLayout>

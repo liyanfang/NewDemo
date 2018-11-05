@@ -1,16 +1,13 @@
 package cn.suanzi.newdemo;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -19,45 +16,52 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import cn.suanzi.newdemo.Util.DataUtils;
+import cn.suanzi.newdemo.Util.DateUtil;
+import cn.suanzi.newdemo.Util.FileUtil;
 import cn.suanzi.newdemo.Util.StatusBarCompat;
+import cn.suanzi.newdemo.Util.ZipUtil;
 import cn.suanzi.newdemo.activity.AdImageViewActivity;
-import cn.suanzi.newdemo.activity.AnimTextActivity;
-import cn.suanzi.newdemo.activity.AnimationActivity;
-import cn.suanzi.newdemo.activity.Banner2Activity;
-import cn.suanzi.newdemo.activity.BannerActivity;
-import cn.suanzi.newdemo.activity.BannerViewActivity;
+import cn.suanzi.newdemo.activity.animation.AnimTextActivity;
+import cn.suanzi.newdemo.activity.animation.AnimationActivity;
+import cn.suanzi.newdemo.activity.banner.Banner2Activity;
+import cn.suanzi.newdemo.activity.banner.BannerActivity;
+import cn.suanzi.newdemo.activity.banner.BannerViewActivity;
 import cn.suanzi.newdemo.activity.BarrageActivity;
 import cn.suanzi.newdemo.activity.CacheActivity;
 import cn.suanzi.newdemo.activity.CircleIndicatorViewActivity;
-import cn.suanzi.newdemo.activity.CoordinatorLayoutActivity;
+import cn.suanzi.newdemo.activity.animation.ProgressActvity;
+import cn.suanzi.newdemo.activity.list.ChatListActivity;
+import cn.suanzi.newdemo.activity.list.CoordinatorLayoutActivity;
 import cn.suanzi.newdemo.activity.DrawViewActivity;
 import cn.suanzi.newdemo.activity.DrawingViewActivity;
 import cn.suanzi.newdemo.activity.FullAnimationActivity;
+import cn.suanzi.newdemo.activity.HighlightActivity;
 import cn.suanzi.newdemo.activity.ImageBlurryActivity;
-import cn.suanzi.newdemo.activity.LoadingActivity;
+import cn.suanzi.newdemo.activity.loading.LoadingActivity;
 import cn.suanzi.newdemo.activity.MainActivity;
-import cn.suanzi.newdemo.activity.QQCeHuaActivity;
-import cn.suanzi.newdemo.activity.RecyclerScrollActivity;
-import cn.suanzi.newdemo.activity.RecyclerViewActivity;
-import cn.suanzi.newdemo.activity.ScrollConflictActivity;
+import cn.suanzi.newdemo.activity.list.RecycleListActivity;
+import cn.suanzi.newdemo.activity.slide.DrawerLayoutActivity;
+import cn.suanzi.newdemo.activity.slide.QQCeHuaActivity;
+import cn.suanzi.newdemo.activity.list.RecyclerScrollActivity;
+import cn.suanzi.newdemo.activity.list.RecyclerViewActivity;
+import cn.suanzi.newdemo.activity.list.ScrollConflictActivity;
 import cn.suanzi.newdemo.activity.SeftAniActivity;
-import cn.suanzi.newdemo.activity.TableyoutActivity;
+import cn.suanzi.newdemo.activity.viewpager.TableyoutActivity;
 import cn.suanzi.newdemo.activity.ThreadPoolExecutorActivity;
 import cn.suanzi.newdemo.activity.Transition3dActivity;
 import cn.suanzi.newdemo.activity.VideoActivity;
 import cn.suanzi.newdemo.activity.ViewFlipperActivity;
 import cn.suanzi.newdemo.activity.WebViewAcitvity;
+import cn.suanzi.newdemo.activity.viewpager.ViewPagerActivity;
 import cn.suanzi.newdemo.adapter.HomeAdapter;
 import cn.suanzi.newdemo.pojo.Home;
-import cn.suanzi.newdemo.pojo.video.VideoItem;
+
+import static cn.suanzi.newdemo.Util.SystemUtil.showSystemParameter;
 
 public class StartActivity extends FragmentActivity{
     private static final String TAG = StartActivity.class.getSimpleName();
@@ -84,64 +88,122 @@ public class StartActivity extends FragmentActivity{
 //        ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
 //        engine.eval("");
 
+        showSystemParameter();
+
+        try {
+            String aa = "11";
+            File test = FileUtil.getCacheFile(this, "/log");
+            File outputDirectory = FileUtil.getCacheFile(this, "/output");
+            String fileName = "/log-" + DateUtil.getNowTimeYMD(DateUtil.FORMAT) + ".log";
+            String fileName_zip = "/log-" + DateUtil.getNowTimeYMD(DateUtil.FORMAT) + ".zip";
+            writeFile(aa, test.getPath(), fileName);
+            Log.d(TAG, "onCreate1111 : " + test.getPath()+fileName);
+            ZipUtil.zip(test.getPath()+fileName, test.getPath() + fileName_zip);
+            Log.d(TAG, "onCreate1111 : " + test.getPath()+fileName);
+
+
+            ZipUtil.unzip(test.getPath() + fileName_zip, outputDirectory.getPath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 写日志
+     * @param sb 日志内容
+     * @return
+     */
+    public String writeFile(String sb, String canPath, String fileName) {
+        Log.d(TAG, "writeFile: 写日志" );
+        if (fileName == null) {
+            fileName = "log-" + DateUtil.getNowTimeYMD(DateUtil.FORMAT) + ".log";
+        }
+        if (TextUtils.isEmpty(canPath)) {
+            return null;
+        }
+        File dir = new File(canPath);
+        if (!dir.exists())
+            dir.mkdirs();
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(canPath + fileName, true);
+            fos.write(sb.getBytes());
+            fos.flush();
+            fos.close();
+        } catch (Exception e) {
+            Log.d(TAG, "writeFile: " + e.getMessage(), e);
+        }
+        return fileName;
     }
 
     private List<Home> getListData () {
         List<Home> homes = new ArrayList<>();
-        Home<MainActivity> mainHome = new Home<>("侧滑动画", 1, MainActivity.class);
+        Home mainHome = new Home<>("侧滑动画", 1, MainActivity.class);
         homes.add(mainHome);
-        Home<AnimTextActivity> home2 = new Home<>("跑马灯", 2, AnimTextActivity.class);
+        Home home2 = new Home<>("跑马灯", 2, AnimTextActivity.class);
         homes.add(home2);
-        Home<BarrageActivity> home3 = new Home<>("视频弹幕", 3, BarrageActivity.class);
+        Home home3 = new Home<>("视频弹幕", 3, BarrageActivity.class);
         homes.add(home3);
-        Home<Transition3dActivity> home4 = new Home<>("反正动画", 4, Transition3dActivity.class);
+        Home home4 = new Home<>("反正动画", 4, Transition3dActivity.class);
         homes.add(home4);
-        Home<SeftAniActivity> home5 = new Home<>("SEFL", 5, SeftAniActivity.class);
+        Home home5 = new Home<>("SEFL", 5, SeftAniActivity.class);
         homes.add(home5);
-        Home<CacheActivity> home6 = new Home<>("CACHE", 7, CacheActivity.class);
+        Home home6 = new Home<>("CACHE", 7, CacheActivity.class);
         homes.add(home6);
-        Home<AnimationActivity> home8 = new Home<>("开关动画", 8, AnimationActivity.class);
+        Home home8 = new Home<>("开关动画", 8, AnimationActivity.class);
         homes.add(home8);
-        Home<TableyoutActivity> home9 = new Home<>("Tableyout", 9, TableyoutActivity.class);
+        Home home9 = new Home<>("Tableyout", 9, TableyoutActivity.class);
         homes.add(home9);
-        Home<FullAnimationActivity> home10 = new Home<>("侧滑+动画", 10, FullAnimationActivity.class);
+        Home home10 = new Home<>("侧滑+动画", 10, FullAnimationActivity.class);
         homes.add(home10);
-        Home<DrawViewActivity> home11 = new Home<>("画图", 11, DrawViewActivity.class);
+        Home home11 = new Home<>("画图", 11, DrawViewActivity.class);
         homes.add(home11);
-        Home<CoordinatorLayoutActivity> home12 = new Home<>("模仿支付宝滑动demo", 12, CoordinatorLayoutActivity.class);
+        Home home12 = new Home<>("模仿支付宝滑动demo", 12, CoordinatorLayoutActivity.class);
         homes.add(home12);
-        Home<RecyclerViewActivity> home14 = new Home<>("RecyclerView示例", 14, RecyclerViewActivity.class);
+        Home home14 = new Home<>("RecyclerView示例", 14, RecyclerViewActivity.class);
         homes.add(home14);
-        Home<RecyclerScrollActivity> recyclerScrollActivity = new Home<>("scrollView/recycleview", 15, RecyclerScrollActivity.class);
+        Home recyclerScrollActivity = new Home<>("scrollView/recycleview", 15, RecyclerScrollActivity.class);
         homes.add(0, recyclerScrollActivity);
-        Home<WebViewAcitvity> webViewAcitvity = new Home<>("WebView html 下载", 16, WebViewAcitvity.class);
+        Home webViewAcitvity = new Home<>("WebView html 下载", 16, WebViewAcitvity.class);
         homes.add(0, webViewAcitvity);
-        Home<AdImageViewActivity> adImageViewActivity = new Home<>("模仿知乎广告图", 17, AdImageViewActivity.class);
-        Home<ImageBlurryActivity> imageBlurryActivity = new Home<>("图片模糊处理", 18, ImageBlurryActivity.class);
-        Home<BannerActivity> BannerActivity = new Home<>("Banner滚屏", 18, BannerActivity.class);
+        Home adImageViewActivity = new Home<>("模仿知乎广告图", 17, AdImageViewActivity.class);
+        Home imageBlurryActivity = new Home<>("图片模糊处理", 18, ImageBlurryActivity.class);
+        Home BannerActivity = new Home<>("Banner滚屏", 18, BannerActivity.class);
         homes.add(0, adImageViewActivity);
         homes.add(0, imageBlurryActivity);
         homes.add(0, BannerActivity);
-        Home<Banner2Activity> Banner2Activity = new Home<>("Banner滚屏测试", 18, Banner2Activity.class);
+        Home Banner2Activity = new Home<>("Banner滚屏测试", 18, Banner2Activity.class);
         homes.add(0, Banner2Activity);
-        Home<ViewFlipperActivity> ViewFlipperActivity = new Home<>("垂直循环滚动", 18, ViewFlipperActivity.class);
+        Home ViewFlipperActivity = new Home<>("垂直循环滚动", 18, ViewFlipperActivity.class);
         homes.add(0, ViewFlipperActivity);
-        Home<DrawingViewActivity> DrawingViewActivity = new Home<>("画的圆环", 18, DrawingViewActivity.class);
+        Home DrawingViewActivity = new Home<>("画的圆环", 18, DrawingViewActivity.class);
         homes.add(0, DrawingViewActivity);
-        Home<CircleIndicatorViewActivity> CircleIndicatorViewActivity = new Home<>("画图", 18, CircleIndicatorViewActivity.class);
+        Home CircleIndicatorViewActivity = new Home<>("画图", 18, CircleIndicatorViewActivity.class);
         homes.add(0, CircleIndicatorViewActivity);
-        Home<LoadingActivity> LoadingActivity = new Home<>("loading", 18, LoadingActivity.class);
+        Home LoadingActivity = new Home<>("loading", 18, LoadingActivity.class);
         homes.add(0, LoadingActivity);
-        Home<BannerViewActivity> BannerViewActivity = new Home<>("Banner 轮播图", 18, BannerViewActivity.class);
+        Home BannerViewActivity = new Home<>("Banner 轮播图", 18, BannerViewActivity.class);
         homes.add(0, BannerViewActivity);
-        Home<ThreadPoolExecutorActivity> ThreadPoolExecutorActivity = new Home<>("线程池", 18, ThreadPoolExecutorActivity.class);
+        Home ThreadPoolExecutorActivity = new Home<>("线程池", 18, ThreadPoolExecutorActivity.class);
         homes.add(0, ThreadPoolExecutorActivity);
-        Home<ScrollConflictActivity> ScrollConflictActivity = new Home<>("纵向滑动冲突", 18, ScrollConflictActivity.class);
+        Home ScrollConflictActivity = new Home<>("纵向滑动冲突", 18, ScrollConflictActivity.class);
         homes.add(0, ScrollConflictActivity);
-        Home<QQCeHuaActivity> QQCeHuaActivity = new Home<>("QQ侧滑", 18, QQCeHuaActivity.class);
+        Home QQCeHuaActivity = new Home<>("QQ侧滑", 18, QQCeHuaActivity.class);
         homes.add(0, QQCeHuaActivity);
-        Home<VideoActivity> VideoActivity = new Home<>("视频", 18, VideoActivity.class);
+        Home VideoActivity = new Home<>("视频", 18, VideoActivity.class);
         homes.add(0, VideoActivity);
+        Home DrawerLayoutActivity = new Home<>("侧滑界面", 18, DrawerLayoutActivity.class);
+        homes.add(0, DrawerLayoutActivity);
+        Home ViewPagerActivity = new Home<>("ViewPagerActivity", 18, ViewPagerActivity.class);
+        homes.add(0, ViewPagerActivity);
+        Home HighlightActivity = new Home<>("引导图", 18, HighlightActivity.class);
+        homes.add(0, HighlightActivity);
+        Home recycleListActivity = new Home<>("recycle 上拉加载", 18, RecycleListActivity.class);
+        homes.add(0, recycleListActivity);
+        Home progressActvity = new Home("进度条", 18, ProgressActvity.class);
+        homes.add(0, progressActvity);
+        Home ChatListActivity = new Home("聊天界面", 18, cn.suanzi.newdemo.activity.list.ChatListActivity.class);
+        homes.add(0, ChatListActivity);
         return homes;
     }
 

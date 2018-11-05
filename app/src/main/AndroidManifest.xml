@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
@@ -28,8 +29,8 @@
         <activity android:name=".activity.Transition3dActivity" />
         <activity android:name=".activity.SeftAniActivity" />
         <activity android:name=".activity.CacheActivity" />
-        <activity android:name=".activity.AnimationActivity" />
-        <activity android:name=".activity.TableyoutActivity" />
+        <activity android:name=".activity.animation.AnimationActivity" />
+        <activity android:name=".activity.viewpager.TableyoutActivity" />
         <activity android:name=".activity.ObjectAnimatorActivity" />
         <activity
             android:name=".activity.FullAnimationActivity"
@@ -37,37 +38,43 @@
         <activity android:name=".activity.DrawViewActivity" />
         <activity android:name=".activity.TestHandlerActivity" />
         <activity android:name=".activity.TranslateAnimationActivity" />
-        <activity android:name=".activity.GradViewActivity" />
-        <activity android:name=".activity.CoordinatorLayoutActivity" />
+        <activity android:name=".activity.list.GradViewActivity" />
+        <activity android:name=".activity.list.CoordinatorLayoutActivity" />
         <activity android:name=".activity.CanvasDemoActivity" />
         <activity
-            android:name=".activity.ListScrollActivity"
+            android:name=".activity.list.ListScrollActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".activity.DrawView2Activity" />
-        <activity android:name=".activity.AnimTextActivity" />
+        <activity android:name=".activity.animation.AnimTextActivity" />
         <activity android:name=".activity.BarrageActivity" />
-        <activity android:name=".activity.RecyclerViewActivity" />
-        <activity android:name=".activity.RecyclerScrollActivity" />
+        <activity android:name=".activity.list.RecyclerViewActivity" />
+        <activity android:name=".activity.list.RecyclerScrollActivity" />
         <activity android:name=".activity.WebViewAcitvity" />
         <activity android:name=".activity.AdImageViewActivity" />
         <activity android:name=".activity.ImageBlurryActivity" />
-        <activity android:name=".activity.Banner2Activity" />
+        <activity android:name=".activity.banner.Banner2Activity" />
         <activity android:name=".activity.ViewFlipperActivity" />
         <activity android:name=".activity.DrawingViewActivity" />
         <activity android:name=".activity.CircleIndicatorViewActivity" />
-        <activity android:name=".activity.LoadingActivity"
+        <activity android:name=".activity.loading.LoadingActivity"
                     android:launchMode="singleTop"/>
-        <activity android:name=".activity.BannerViewActivity" />
-        <activity android:name=".activity.LoadingAnimationActivity" />
-        <activity android:name=".activity.LoadingFrameAnimationActivity" />
+        <activity android:name=".activity.banner.BannerViewActivity" />
+        <activity android:name=".activity.loading.LoadingAnimationActivity" />
+        <activity android:name=".activity.loading.LoadingFrameAnimationActivity" />
         <activity android:name=".activity.ThreadPoolExecutorActivity" />
-        <activity android:name=".activity.ScrollConflictActivity"/>
-        <activity android:name=".activity.QQCeHuaActivity"/>
+        <activity android:name=".activity.list.ScrollConflictActivity"/>
+        <activity android:name=".activity.slide.QQCeHuaActivity"/>
         <activity
-            android:name=".activity.BannerActivity"
+            android:name=".activity.banner.BannerActivity"
             android:label="@string/title_activity_banner"
             android:theme="@style/AppTheme"></activity>
         <activity android:name=".activity.VideoActivity" />
+        <activity android:name=".activity.slide.DrawerLayoutActivity" />
+        <activity android:name=".activity.viewpager.ViewPagerActivity" />
+        <activity android:name=".activity.HighlightActivity" />
+        <activity android:name=".activity.list.RecycleListActivity" />
+        <activity android:name=".activity.animation.ProgressActvity" />
+        <activity android:name=".activity.list.ChatListActivity" />
     </application>
 
 </manifest>

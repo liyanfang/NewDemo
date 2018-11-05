@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.View.Rotate3dAnimation;
+import cn.suanzi.newdemo.view.Rotate3dAnimation;
 
 
 public class Transition3dActivity extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener {

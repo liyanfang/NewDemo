@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.activity.TableyoutActivity;
+import cn.suanzi.newdemo.activity.viewpager.TableyoutActivity;
 
 /**
  * Created by liyanfang on 2016/7/16.

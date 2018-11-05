@@ -25,13 +25,13 @@
             android:text="@string/prev" />
     </RelativeLayout>
 
-    <cn.suanzi.newdemo.View.AutoTextView
+    <cn.suanzi.newdemo.view.AutoTextView
         android:id="@+id/switcher02"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_green_dark" />
 
-    <cn.suanzi.newdemo.View.HorizonScrollTextView
+    <cn.suanzi.newdemo.view.HorizonScrollTextView
         android:id="@+id/tv_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         android:background="@android:color/holo_blue_light"
         android:gravity="center_vertical" />
 
-    <cn.suanzi.newdemo.View.HorizonScrollTextView2
+    <cn.suanzi.newdemo.view.HorizonScrollTextView2
         android:id="@+id/tv_3"
         android:layout_width="match_parent"
         android:layout_height="25dp"

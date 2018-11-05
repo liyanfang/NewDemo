@@ -5,7 +5,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <cn.suanzi.newdemo.View.MySwipeRefreshLayout
+    <cn.suanzi.newdemo.view.MySwipeRefreshLayout
         android:id="@+id/sf_swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,7 +27,7 @@
                     android:scaleType="fitXY"
                     android:adjustViewBounds="true"/>
             </LinearLayout>
-            <cn.suanzi.newdemo.View.TtgPagerSlidingTab
+            <cn.suanzi.newdemo.view.TtgPagerSlidingTab
                 android:id="@+id/ttg_pager_sliding_tab"
                 android:layout_width="match_parent"
                 android:overScrollMode="never"
@@ -50,5 +50,5 @@
                 android:layout_height="match_parent"/>
         </LinearLayout>
     <!--</cn.suanzi.newdemo.View.ScrollInterceptScrollView>-->
-    </cn.suanzi.newdemo.View.MySwipeRefreshLayout>
+    </cn.suanzi.newdemo.view.MySwipeRefreshLayout>
 </LinearLayout>
