@@ -19,9 +19,11 @@
         android:paddingEnd="@dimen/ttg_dp_10"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
+        android:paddingBottom="20dp"
+        android:orientation="vertical"
         android:background="@drawable/shape_team_reward_top_bg">
-        <cn.suanzi.newdemo.view.TeamProgressView
-            android:id="@+id/indicate_progress"
+        <cn.suanzi.newdemo.view.progress.TeamProgressView
+            android:id="@+id/team_progress"
             android:layout_width="match_parent"
             android:layout_height="85dp"
             android:layout_marginLeft="10dp"
@@ -30,6 +32,42 @@
             app:teamRadius="4dp"
             app:teamBackgroundColor="#FF7ABF"
             app:teamProgressColor="#FFD54D" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/shape_progressbar_bg"
+            android:minWidth="200dp"/>
+
+        <cn.suanzi.newdemo.view.progress.IndicateProgressView
+            android:id="@+id/indicate_progress"
+            android:layout_width="200dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            app:indicateRadius="4dp"
+            app:indicateSize="9sp"
+            app:indicateTextcolor="#333333"
+            app:backgroundColor="#FF7ABF"
+            app:startProgressColor="#FFD54D"
+            app:endProgressColor="#FFD54D" />
+
+        <cn.suanzi.newdemo.view.progress.SaleProgressView
+            android:id="@+id/sale_progress"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_below="@+id/rl_top"
+            android:layout_centerHorizontal="true"
+            app:saleRadius="14dp"
+            app:saleProgressHeight="40dp"
+            app:saleProgressRadius="10dp"
+            app:saleBottomNumTop="12dp"
+            app:saleScaleSize="12dp"/>
     </LinearLayout>
 
 </LinearLayout>
