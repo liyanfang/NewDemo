@@ -6,4 +6,5 @@
     <string name="next">next !</string>
     <string name="prev">prev !</string>
     <string name="title_activity_banner">BannerActivity</string>
+    <string name="test">给定精确的宽度</string>
 </resources>

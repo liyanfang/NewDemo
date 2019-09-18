@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ly_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,6 +13,35 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="18sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:background="#5D13E1"
+                    android:layout_marginEnd="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"/>
+                <cn.suanzi.newdemo.view.label.JlLabelLayout
+                    android:id="@+id/largeLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="20dp"
+                    android:background="#D2E8E4"
+                    app:alignContent="flex_start"
+                    app:alignItems="flex_start"
+                    app:jl_label_line="3"
+                    app:jl_label_padding_left="10dp"
+                    app:jl_label_padding_right="10dp"
+                    app:jl_label_margin_bottom="10dp"
+                    app:jl_label_space="10dp"
+                    app:jl_label_text_size="10sp"
+                    app:jl_label_height="20dp" />
+        </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/lv_list"
             android:layout_width="match_parent"

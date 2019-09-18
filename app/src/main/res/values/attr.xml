@@ -81,4 +81,23 @@
         <attr name="saleScaleSize" format="dimension" />
         <attr name="saleBottomNumTop" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="JlLabelLayout">
+        <!-- label 行数 -->
+        <attr name="jl_label_line" format="integer"/>
+        <!-- label 底部外边距-->
+        <attr name="jl_label_margin_bottom" format="dimension"/>
+        <!-- label 间隙-->
+        <attr name="jl_label_space" format="dimension"/>
+        <!-- label 左边内边距-->
+        <attr name="jl_label_padding_left" format="dimension"/>
+        <!-- label 右边内边距-->
+        <attr name="jl_label_padding_right" format="dimension"/>
+        <!-- label 高度-->
+        <attr name="jl_label_height" format="dimension"/>
+        <!-- label 宽度-->
+        <attr name="jl_label_width" format="dimension"/>
+        <!-- label 文字大小-->
+        <attr name="jl_label_text_size" format="dimension"/>
+    </declare-styleable>
 </resources>

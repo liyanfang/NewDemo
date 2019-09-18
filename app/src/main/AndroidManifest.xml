@@ -75,6 +75,7 @@
         <activity android:name=".activity.list.RecycleListActivity" />
         <activity android:name=".activity.animation.ProgressActvity" />
         <activity android:name=".activity.list.ChatListActivity" />
+        <activity android:name=".activity.viewpager.TestViewpagerActivity" />
     </application>
 
 </manifest>

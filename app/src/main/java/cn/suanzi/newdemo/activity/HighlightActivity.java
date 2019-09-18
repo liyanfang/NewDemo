@@ -4,18 +4,22 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.suanzi.newdemo.R;
 import cn.suanzi.newdemo.Util.Util;
+import cn.suanzi.newdemo.dialog.TimeDailog;
 import cn.suanzi.newdemo.view.picker.picker.DatePicker;
 import cn.suanzi.newdemo.view.picker.WheelView;
 import zhy.com.highlight.HighLight;
@@ -37,12 +41,45 @@ public class HighlightActivity extends AppCompatActivity implements View.OnClick
         Button btnTest2 = findViewById(R.id.btn_test2);
         TextView btnTest3 = findViewById(R.id.btn_test3);
         View rootView = findViewById(R.id.ll_root_view);
-        btnTest3.setOnClickListener(view -> initHighlight());
-        new Thread(() -> {
-            this.runOnUiThread(this::initHighlight);
-        }).start();
-        setIvadd();
+//        btnTest3.setOnClickListener(view -> initHighlight());
+//        new Thread(() -> {
+//            this.runOnUiThread(this::initHighlight);
+//        }).start();
+//        setIvadd();
+        addLayout();
     }
+
+    private void addLayout () {
+        LinearLayout llAdd1 = findViewById(R.id.ll_add1);
+        LinearLayout llAdd2 = findViewById(R.id.ll_add2);
+        View view1 = LayoutInflater.from(this).inflate(R.layout.test_add_layout1, null);
+        View view2 = LayoutInflater.from(this).inflate(R.layout.test_add_layout1, null);
+        View view3 = LayoutInflater.from(this).inflate(R.layout.test_add_layout1, null);
+        View view4 = LayoutInflater.from(this).inflate(R.layout.test_add_layout1, null);
+        llAdd1.addView(view1);
+        llAdd1.addView(view2);
+        llAdd1.addView(view3);
+        llAdd1.addView(view4);
+        View view5 = LayoutInflater.from(this).inflate(R.layout.test_add_layout1, null);
+        View view6 = LayoutInflater.from(this).inflate(R.layout.test_add_layout1, null);
+        View view7 = LayoutInflater.from(this).inflate(R.layout.test_add_layout2, null);
+        llAdd2.addView(view5);
+        llAdd2.addView(view6);
+        llAdd2.addView(view7);
+        setWeight(view1, 1);
+        setWeight(view2, 1);
+        setWeight(view3, 1);
+        setWeight(view4, 1);
+        setWeight(view5, 1);
+        setWeight(view6, 1);
+        setWeight(view7, 2);
+    }
+
+    private void setWeight (View view, int weight) {
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
+        layoutParams.weight = weight;
+    }
+
     boolean isBack = false;
 
     private void setIvadd () {
@@ -104,6 +141,11 @@ public class HighlightActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
     }
 
+    public void onShowTimeDialog (View view) {
+        TimeDailog timeDailog = new TimeDailog(this);
+        timeDailog.show();
+    }
+
     public void onShowDialog (View view) {
             final DatePicker picker = new DatePicker(this);
             picker.setCanceledOnTouchOutside(true);
@@ -112,8 +154,8 @@ public class HighlightActivity extends AppCompatActivity implements View.OnClick
             picker.setRangeEnd(2111, 1, 11);
             picker.setRangeStart(2016, 8, 29);
             picker.setSelectedItem(2050, 10, 14);
-            picker.setResetWhileWheel(false);
-            picker.setLabel("","","");
+            picker.setResetWhileWheel(true);
+            picker.setLabel("年","月","日");
             picker.setTitleTextColor(0);
             picker.setContentPadding(Util.dip2px(this, 15), 0);
             picker.setTextSize(18);
@@ -126,6 +168,7 @@ public class HighlightActivity extends AppCompatActivity implements View.OnClick
             WheelView.DividerConfig dividerConfig = new WheelView.DividerConfig();
             dividerConfig.setColor(Color.parseColor("#FF514C"));
             dividerConfig.setThick(Util.dip2px(this, 2));
+            dividerConfig.setRatio(1);
             picker.setDividerConfig(dividerConfig);
             picker.setHeight(Util.dip2px(this, 235));
             picker.setLineSpaceMultiplier(3);

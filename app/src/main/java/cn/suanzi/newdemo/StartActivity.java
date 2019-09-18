@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,7 +36,6 @@ import cn.suanzi.newdemo.activity.BarrageActivity;
 import cn.suanzi.newdemo.activity.CacheActivity;
 import cn.suanzi.newdemo.activity.CircleIndicatorViewActivity;
 import cn.suanzi.newdemo.activity.animation.ProgressActvity;
-import cn.suanzi.newdemo.activity.list.ChatListActivity;
 import cn.suanzi.newdemo.activity.list.CoordinatorLayoutActivity;
 import cn.suanzi.newdemo.activity.DrawViewActivity;
 import cn.suanzi.newdemo.activity.DrawingViewActivity;
@@ -60,6 +60,7 @@ import cn.suanzi.newdemo.activity.WebViewAcitvity;
 import cn.suanzi.newdemo.activity.viewpager.ViewPagerActivity;
 import cn.suanzi.newdemo.adapter.HomeAdapter;
 import cn.suanzi.newdemo.pojo.Home;
+import cn.suanzi.newdemo.view.label.JlLabelLayout;
 
 import static cn.suanzi.newdemo.Util.SystemUtil.showSystemParameter;
 
@@ -88,6 +89,13 @@ public class StartActivity extends FragmentActivity{
 //        ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
 //        engine.eval("");
 
+        JlLabelLayout jlLabelLayout = findViewById(R.id.largeLabel);
+        jlLabelLayout.setOnLabelClickListener(new JlLabelLayout.OnLabelClickListener() {
+            @Override
+            public void onClick(TextView view) {
+                Toast.makeText(StartActivity.this, view.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
         showSystemParameter();
 
         try {
@@ -204,6 +212,8 @@ public class StartActivity extends FragmentActivity{
         homes.add(0, progressActvity);
         Home ChatListActivity = new Home("聊天界面", 18, cn.suanzi.newdemo.activity.list.ChatListActivity.class);
         homes.add(0, ChatListActivity);
+        Home TestViewpagerActivity = new Home("viewpager", 18, cn.suanzi.newdemo.activity.viewpager.TestViewpagerActivity.class);
+        homes.add(0, TestViewpagerActivity);
         return homes;
     }
 

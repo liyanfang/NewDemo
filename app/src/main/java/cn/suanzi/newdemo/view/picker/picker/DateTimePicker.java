@@ -432,8 +432,10 @@ public class DateTimePicker extends WheelPicker {
                     }
                     LogUtils.verbose(this, "change months after year wheeled");
                     if (resetWhileWheel) {
-                        selectedMonthIndex = 0;//重置月份索引
-                        selectedDayIndex = 0;//重置日子索引
+                        //重置月份索引
+                        selectedMonthIndex = 0;
+                        //重置日子索引
+                        selectedDayIndex = 0;
                     }
                     //需要根据年份及月份动态计算天数
                     int selectedYear = DateUtils.trimZero(selectedYearStr);

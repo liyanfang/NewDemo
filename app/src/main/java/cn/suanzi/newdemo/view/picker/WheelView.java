@@ -49,64 +49,104 @@ import cn.suanzi.newdemo.view.picker.util.ConvertUtils;
 public class WheelView extends View {
     public static final float LINE_SPACE_MULTIPLIER = 2.0F;
     public static final int TEXT_PADDING = -1;
-    public static final int TEXT_SIZE = 16;//单位为sp
-    public static final int TEXT_COLOR_FOCUS = 0XFF0288CE;
+    //单位为sp
+    public static final int TEXT_SIZE = 18;
+    public static final int TEXT_COLOR_FOCUS = 0XFF333333;
     public static final int TEXT_COLOR_NORMAL = 0XFFBBBBBB;
-    public static final int DIVIDER_COLOR = 0XFF83CDE6;
+    public static final int DIVIDER_COLOR = 0XFFCCCCCC;
     public static final int DIVIDER_ALPHA = 220;
-    public static final float DIVIDER_THICK = 2f;//单位为px
+    //单位为px
+    public static final float DIVIDER_THICK = 2f;
     public static final int ITEM_OFF_SET = 3;
-    private static final float ITEM_PADDING = 13f;//单位为px,480X800的手机边距不能太大
-    private static final int ACTION_CLICK = 1;//点击
-    private static final int ACTION_FLING = 2;//滑翔
-    private static final int ACTION_DRAG = 3;//拖拽
-    private static final int VELOCITY_FLING = 5;//修改这个值可以改变滑行速度
-    private static final float SCALE_CONTENT = 0.8F;//非中间文字用此控制高度，压扁形成3D错觉
+    //单位为px,480X800的手机边距不能太大
+    private static final float ITEM_PADDING = 13f;
+    //点击
+    private static final int ACTION_CLICK = 1;
+    //滑翔
+    private static final int ACTION_FLING = 2;
+    //拖拽
+    private static final int ACTION_DRAG = 3;
+    //修改这个值可以改变滑行速度
+    private static final int VELOCITY_FLING = 5;
+    //非中间文字用此控制高度，压扁形成3D错觉
+    private static final float SCALE_CONTENT = 0.8F;
 
     private MessageHandler handler;
     private GestureDetector gestureDetector;
     private OnItemSelectListener onItemSelectListener;
     private OnWheelListener onWheelListener;
-    private boolean onlyShowCenterLabel = true;//附加单位是否仅仅只显示在选中项后面
+    //附加单位是否仅仅只显示在选中项后面
+    private boolean onlyShowCenterLabel = true;
     private ScheduledFuture<?> mFuture;
-    private Paint paintOuterText;//未选项画笔
-    private Paint paintCenterText;//选中项画笔
-    private Paint paintIndicator;//分割线画笔
-    private Paint paintShadow;//阴影画笔
-    private List<WheelItem> items = new ArrayList<>();//所有选项
-    private String label;//附加单位
-    private int maxTextWidth;//最大的文字宽
-    private int maxTextHeight;//最大的文字高
-    private int textSkewXOffset = 0;//文字倾斜度
-    private int textSize = TEXT_SIZE;//文字大小，单位为sp
-    private float itemHeight;//每行高度
-    private Typeface typeface = Typeface.DEFAULT;//字体样式
-    private int textColorOuter = TEXT_COLOR_NORMAL;//未选项文字颜色
-    private int textColorCenter = TEXT_COLOR_FOCUS;//选中项文字颜色
+    //未选项画笔
+    private Paint paintOuterText;
+    //选中项画笔
+    private Paint paintCenterText;
+    //分割线画笔
+    private Paint paintIndicator;
+    //阴影画笔
+    private Paint paintShadow;
+    //所有选项
+    private List<WheelItem> items = new ArrayList<>();
+    //附加单位
+    private String label;
+    //最大的文字宽
+    private int maxTextWidth;
+    //最大的文字高
+    private int maxTextHeight;
+    //文字倾斜度
+    private int textSkewXOffset = 0;
+    //文字大小，单位为sp
+    private int textSize = TEXT_SIZE;
+    //每行高度
+    private float itemHeight;
+    //字体样式
+    private Typeface typeface = Typeface.DEFAULT;
+    //未选项文字颜色
+    private int textColorOuter = TEXT_COLOR_NORMAL;
+    //选中项文字颜色
+    private int textColorCenter = TEXT_COLOR_FOCUS;
     private DividerConfig dividerConfig = new DividerConfig();
-    private float lineSpaceMultiplier = LINE_SPACE_MULTIPLIER;//条目间距倍数，可用来设置上下间距
-    private int textPadding = TEXT_PADDING;//文字的左右边距,单位为px
-    private boolean isLoop = true;//循环滚动
-    private float firstLineY;//第一条线Y坐标值
-    private float secondLineY;//第二条线Y坐标
-    private float totalScrollY = 0;//滚动总高度y值
-    private int initPosition = -1;//初始化默认选中项
-    private int selectedIndex;//选中项的索引
+    //条目间距倍数，可用来设置上下间距
+    private float lineSpaceMultiplier = LINE_SPACE_MULTIPLIER;
+    //文字的左右边距,单位为px
+    private int textPadding = TEXT_PADDING;
+    //循环滚动
+    private boolean isLoop = true;
+    //第一条线Y坐标值
+    private float firstLineY;
+    //第二条线Y坐标
+    private float secondLineY;
+    //滚动总高度y值
+    private float totalScrollY = 0;
+    //初始化默认选中项
+    private int initPosition = -1;
+    //选中项的索引
+    private int selectedIndex;
     private int preCurrentIndex;
-    private int visibleItemCount = ITEM_OFF_SET * 2 + 1;//绘制几个条目
-    private int measuredHeight;//控件高度
-    private int measuredWidth;//控件宽度
-    private int radius;//半径
+    //绘制几个条目
+    private int visibleItemCount = ITEM_OFF_SET * 2 + 1;
+    //控件高度
+    private int measuredHeight;
+    //控件宽度
+    private int measuredWidth;
+    //半径
+    private int radius;
     private int offset = 0;
     private float previousY = 0;
     private long startTime = 0;
     private int widthMeasureSpec;
     private int gravity = Gravity.CENTER;
-    private int drawCenterContentStart = 0;//中间选中文字开始绘制位置
-    private int drawOutContentStart = 0;//非中间文字开始绘制位置
-    private float centerContentOffset;//偏移量
-    private boolean useWeight = false;//使用比重还是包裹内容？
-    private boolean textSizeAutoFit = true;//条目内容过长时是否自动减少字号来适配
+    //中间选中文字开始绘制位置
+    private int drawCenterContentStart = 0;
+    //非中间文字开始绘制位置
+    private int drawOutContentStart = 0;
+    //偏移量
+    private float centerContentOffset;
+    //使用比重还是包裹内容？
+    private boolean useWeight = false;
+    //条目内容过长时是否自动减少字号来适配
+    private boolean textSizeAutoFit = true;
 
     public WheelView(Context context) {
         this(context, null);
@@ -746,6 +786,7 @@ public class WheelView extends View {
             case Gravity.RIGHT:
                 drawOutContentStart = measuredWidth - rect.width() - (int) centerContentOffset;
                 break;
+                default:
         }
     }
 
@@ -865,7 +906,7 @@ public class WheelView extends View {
         protected int shadowColor = TEXT_COLOR_NORMAL;
         protected int shadowAlpha = 100;
         protected int alpha = DIVIDER_ALPHA;
-        protected float ratio = 0.1f;
+        protected float ratio = 0f;
         protected float thick = DIVIDER_THICK;
 
         public DividerConfig() {

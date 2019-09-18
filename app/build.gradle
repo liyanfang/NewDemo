@@ -52,8 +52,15 @@ dependencies {
     //smartRefreshLayout 下拉刷新
 //    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
 //    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+    // 刷新框架
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    // 高亮框架
     compile 'com.isanwenyu.highlight:highlight:1.8.0'
+    // 左右滑动的列表跟viewpager配置
+//    compile 'com.flyco.pageindicator:FlycoPageIndicator_Lib:1.0.0@aar'
+    compile'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    compile 'com.google.android:flexbox:1.0.0'
+
 //    compile 'ren.yale.android:cachewebviewlib:1.2.4'
 //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 //    compile 'com.android.support:cardview-v7:21.+'

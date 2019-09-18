@@ -2,26 +2,20 @@ package cn.suanzi.newdemo.view.progress;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.Shader;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import cn.suanzi.newdemo.R;
-import cn.suanzi.newdemo.pojo.TeamProgress;
-
-import static com.scwang.smartrefresh.layout.util.DensityUtil.dp2px;
 
 /**
  * @author liyanfang
@@ -37,26 +31,21 @@ public class TeamProgressView extends View {
 	private int endProgressColor = 0xffFFD54D;
 	/** 文字颜色*/
 	private int textColor = 0xffffffff;
+
 	/** 进度条四个角的角度px*/
 	private float radius = 20;
-//	/** 进度条最大值*/
-//	private int max = 100;
 	/** 进度值*/
 	private int progress;
 	/** 进度值文字大小*/
 	private float topTextSize = sp2px(11);
 	/** 底部文字大小*/
 	private float bottomTextSize = sp2px(13);
-	/** 进度背景画笔*/
-	private Paint backPaint;
-	/** 进度条背景画笔*/
-	private Paint progressPaint;
 	/** 刻度文字画笔*/
-	private Paint topTextPaint;
-	/** 刻度奖励文字画笔*/
+	private Paint paint;
+	private Paint roundPaint;
 	private Paint bottomTextPaint;
-	/** 进度背景*/
-	private RectF progressRectF;
+	/** 进度矩形*/
+	private RectF progressRectF = new RectF();
 
 	/** 销售额/奖励金额*/
 	private List<TeamProgress> salesList = new ArrayList<>();
@@ -69,6 +58,17 @@ public class TeamProgressView extends View {
 	/** 控件的宽高*/
 	private float mHeight;
 	private float mWidth;
+	/** 刻度对应的文字描述*/
+	private String startTopText;
+	private String startBottomText;
+	/** 刻度对应的文字描述的颜色*/
+	private int startDesTitleColor = 0xffFF9CCE;
+	/** 上下刻度颜色*/
+	private int scaleColor = 0xffFFDD00;
+	/** 刻度圆默认颜色*/
+	private int scaleCircleColor = 0xffF76B1C;
+	/**刻度圆选中颜色*/
+	private int scaleCircleSelectColor = 0xffAC0BA0;
 
 	public TeamProgressView(Context context) {
 		super(context);
@@ -91,20 +91,19 @@ public class TeamProgressView extends View {
 			bottomTextSize = taArray.getDimension(R.styleable.TeamProgressView_teamBottomTextSize, bottomTextSize);
 			taArray.recycle();
 		}
-		// 初始化进度条背景画笔
-		backPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		backPaint.setColor(backgroundColor);
-		backPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-		// 初始化进度条进度画笔
-		progressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		progressPaint.setColor(startProgressColor);
-		progressPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-
+		// 初始画笔
+		roundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		bottomTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		paint.setColor(backgroundColor);
+		paint.setStyle(Paint.Style.FILL_AND_STROKE);
+		this.startTopText = "销售额";
+		this.startBottomText = "奖励金";
 		addScaleList();
 	}
 
 	/**
-	 * 刻度
+	 * 刻度，demo里面测写的默认
 	 */
 	private void addScaleList () {
 		salesList.add(new TeamProgress(0,0));
@@ -131,9 +130,12 @@ public class TeamProgressView extends View {
 	 * 绘制刻度文字
 	 */
 	private void drawProgressScaleText (Canvas canvas) {
-
 		// 刻度总个数
 		int scaleCount = salesList.size();
+		if (scaleCount <= 1) {
+			// 刻度小余1不需要处理
+			return;
+		}
 		float distance = ((mWidth - 2 * paddingLeft) / (scaleCount - 1));
 		float centerY = mHeight / 2;
 		// 计算文字Y位置
@@ -143,54 +145,52 @@ public class TeamProgressView extends View {
 		// 画进度
 		for (int i = 0; i < scaleCount; i++) {
 			TeamProgress teamProgress = salesList.get(i);
-			Paint roundPaint = new Paint();
 			// 画园
 			roundPaint.setStyle(Paint.Style.FILL);
 			// 上面的刻度文字
-			topTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-			topTextPaint.setColor(Color.WHITE);
-			topTextPaint.setTextSize(topTextSize);
+			paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+			paint.setColor(Color.WHITE);
+			paint.setTextSize(topTextSize);
 			// 下面奖励刻度文字
-			bottomTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 			bottomTextPaint.setColor(Color.WHITE);
 			bottomTextPaint.setTextSize(bottomTextSize);
 			// 设置超过进度圆圈颜色值
 			if (progress >= teamProgress.getSale()) {
-				roundPaint.setColor(Color.parseColor("#F76B1C"));
-				topTextPaint.setColor(Color.parseColor("#FFDD00"));
-				bottomTextPaint.setColor(Color.parseColor("#FFDD00"));
+				roundPaint.setColor(scaleCircleColor);
+				paint.setColor(scaleColor);
+				bottomTextPaint.setColor(scaleColor);
 			} else {
-				roundPaint.setColor(Color.parseColor("#AC0BA0"));
-				topTextPaint.setColor(Color.WHITE);
+				roundPaint.setColor(scaleCircleSelectColor);
+				paint.setColor(Color.WHITE);
 				bottomTextPaint.setColor(Color.WHITE);
 			}
 			float distanceX = distance*i;
 			canvas.drawCircle(distanceX + paddingLeft, centerY, mRoundRadius, roundPaint);
 			if (i == 0) {
 				bottomTextPaint.setTextSize(topTextSize);
-				topTextPaint.setColor(Color.parseColor("#FF9CCE"));
-				bottomTextPaint.setColor(Color.parseColor("#FF9CCE"));
+				paint.setColor(startDesTitleColor);
+				bottomTextPaint.setColor(startDesTitleColor);
 				// 测量文字的宽
-				float topTextWidth = topTextPaint.measureText("销售额");
-				float bottomTextWidth = bottomTextPaint.measureText("销售额");
+				float topTextWidth = paint.measureText(startTopText);
+				float bottomTextWidth = bottomTextPaint.measureText(startBottomText);
 				// 计算文字X轴位置
 				float topTextX = distanceX + paddingLeft - topTextWidth/2;
 				float bottomTextX = distanceX + paddingLeft - bottomTextWidth/2;
 
-				canvas.drawText("销售额", topTextX, topTextY, topTextPaint);
-				canvas.drawText("奖励金", bottomTextX, bottomTextY, bottomTextPaint);
+				canvas.drawText(startTopText, topTextX, topTextY, paint);
+				canvas.drawText(startBottomText, bottomTextX, bottomTextY, bottomTextPaint);
 
 			} else {
 
 				// 测量文字的宽
-				float topTextWidth = topTextPaint.measureText(teamProgress.getSale()+"");
-				float bottomTextWidth = bottomTextPaint.measureText(teamProgress.getReward()+"");
+				float topTextWidth = paint.measureText(teamProgress.getSaleText());
+				float bottomTextWidth = bottomTextPaint.measureText(teamProgress.getRewardText());
 				// 计算文字X轴位置
 				float topTextX = distanceX + paddingLeft - topTextWidth/2;
 				float bottomTextX = distanceX + paddingLeft - bottomTextWidth/2;
 
-				canvas.drawText(teamProgress.getSale()+"", topTextX, topTextY, topTextPaint);
-				canvas.drawText(teamProgress.getReward()+"", bottomTextX , bottomTextY, bottomTextPaint);
+				canvas.drawText(teamProgress.getSaleText(), topTextX, topTextY, paint);
+				canvas.drawText(teamProgress.getRewardText(), bottomTextX , bottomTextY, bottomTextPaint);
 			}
 		}
 	}
@@ -203,9 +203,12 @@ public class TeamProgressView extends View {
 		//画背景
 		float top =  (mHeight / 2 - progressHeight/2);
 		float bottom =  (mHeight / 2 + progressHeight/2);
-		RectF backRectF = new RectF(paddingLeft + mRoundRadius /2, top, mWidth - paddingLeft, bottom);
-		backPaint.setColor(backgroundColor);
-		canvas.drawRoundRect(backRectF, radius, radius, backPaint);
+		progressRectF.set(paddingLeft + mRoundRadius /2, top, mWidth - paddingLeft, bottom);
+		// 初始化进度条背景画笔
+		paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+		paint.setColor(backgroundColor);
+		paint.setStyle(Paint.Style.FILL_AND_STROKE);
+		canvas.drawRoundRect(progressRectF, radius, radius, paint);
 	}
 
 	/**
@@ -245,7 +248,6 @@ public class TeamProgressView extends View {
 			scale = 1;
 		} else {
 			scale = (progress - previousValue)/(scaleValue - previousValue);
-//			scale = progress/scaleValue;
 		}
 
 		// 进度左边的x轴位置
@@ -255,8 +257,11 @@ public class TeamProgressView extends View {
 		float rightDistance = (position - 1) * distance + distance * scale + paddingLeft;
 		rightDistance = rightDistance > maxRightDistance ? maxRightDistance : rightDistance;
 
-		progressRectF = new RectF(paddingLeft + mRoundRadius /2, top, rightDistance, bottom);
-		canvas.drawRoundRect(progressRectF, radius, radius, progressPaint);
+		paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+		paint.setColor(startProgressColor);
+		paint.setStyle(Paint.Style.FILL_AND_STROKE);
+		progressRectF.set(paddingLeft + mRoundRadius /2, top, rightDistance, bottom);
+		canvas.drawRoundRect(progressRectF, radius, radius, paint);
 
 	}
 
@@ -270,10 +275,13 @@ public class TeamProgressView extends View {
 		return (int) (spValue * fontScale + 0.5f);
 	}
 
+	public int dp2px(float dpValue) {
+		return (int) (0.5f + dpValue * Resources.getSystem().getDisplayMetrics().density);
+	}
+
 	@Override
 	public void setBackgroundColor(int color) {
 		this.backgroundColor = color;
-		backPaint.setColor(backgroundColor);
 		postInvalidate();
 	}
 
@@ -336,13 +344,9 @@ public class TeamProgressView extends View {
 	 * @param salesList
 	 */
 	public void sort (List<TeamProgress> salesList) {
-		Collections.sort(salesList, new Comparator<TeamProgress>() {
-			@Override
-			@SuppressWarnings("unchecked")
-			public int compare(TeamProgress progress, TeamProgress progress1) {
-				// 返回值 小于0正序，大于0倒序
-				return progress.getSale() - progress1.getSale();
-			}
+		Collections.sort(salesList, (progress, progress1) -> {
+			// 返回值 小于0正序，大于0倒序
+			return progress.getSale() - progress1.getSale();
 		});
 	}
 
@@ -361,6 +365,58 @@ public class TeamProgressView extends View {
 			scale = (float)progress / (float)maxValue;
 		}
 		return scale;
+	}
+
+	public class TeamProgress {
+
+		/** 销售额*/
+		private int sale;
+		/** 奖励*/
+		private int reward;
+		/** 刻度对应的字符串*/
+		private String saleText;
+		private String rewardText;
+
+		public TeamProgress(int sale, int reward) {
+			this.sale = sale;
+			this.reward = reward;
+			this.saleText = String.valueOf(sale);
+			this.rewardText = String.valueOf(reward);
+		}
+
+		public int getSale() {
+			return sale;
+		}
+
+		public void setSale(int sale) {
+			this.sale = sale;
+			this.saleText = String.valueOf(sale);
+		}
+
+		public int getReward() {
+			return reward;
+		}
+
+		public void setReward(int reward) {
+			this.reward = reward;
+			this.rewardText = String.valueOf(reward);
+		}
+
+		public String getSaleText() {
+			return saleText;
+		}
+
+		public void setSaleText(String saleText) {
+			this.saleText = saleText;
+		}
+
+		public String getRewardText() {
+			return rewardText;
+		}
+
+		public void setRewardText(String rewardText) {
+			this.rewardText = rewardText;
+		}
 	}
 	
 }
